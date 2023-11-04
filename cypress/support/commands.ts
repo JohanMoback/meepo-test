@@ -2,7 +2,7 @@
 declare namespace Cypress {
     interface Chainable {
         completeForm: () => void;
-        nextButton: () => void;
+        informationMissing: () => void;
         name: () => void;
     }
 }
@@ -12,9 +12,9 @@ const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScWINEF6sSy0W_-TK8fsz
 Cypress.Commands.add('completeForm', () => {
     cy.visit(FORM_URL)
     cy.get('span.NPEfkd.RveJvd.snByac').first().click();
-    cy.get('input.whsOnd.zHQkBf').first().type('Johan');
-    cy.get('input.whsOnd.zHQkBf').eq(1).type('Moback');
-    cy.get('input.whsOnd.zHQkBf').eq(2).dblclick().type('1996-10-10');    
+    cy.get('input.whsOnd.zHQkBf').first().type('Johan').should('have.value', 'Johan');
+    cy.get('input.whsOnd.zHQkBf').eq(1).type('Moback').should('have.value', 'Moback');;
+    cy.get('input.whsOnd.zHQkBf').eq(2).dblclick().type('1996-10-10').should('have.value', '1996-10-10');;    
     cy.get(".MocG8c.HZ3kWc.mhLiyf.LMgvRb.DEh1R").click();
     cy.get('span.vRMGwf.oJeWuf').eq(4).should('not.be.visible').click();
     cy.get('span.NPEfkd.RveJvd.snByac').eq(1).click();
@@ -30,9 +30,12 @@ Cypress.Commands.add('completeForm', () => {
     
 })
 
-Cypress.Commands.add('nextButton', () => {
-    cy.get('span.NPEfkd.RveJvd.snByac').click();
-})
-Cypress.Commands.add('name', () => {
-    cy.get('input[type="text"][jsname="YPqjbf"]').click();
+Cypress.Commands.add('informationMissing', () => {
+    cy.visit(FORM_URL)
+    cy.get('span.NPEfkd.RveJvd.snByac').first().click()
+    cy.get('input.whsOnd.zHQkBf').first().type('Johan')
+    cy.get('span.NPEfkd.RveJvd.snByac').eq(1).click() //click next without filling the mandatory fields
+    // assert if any field is missing value
+    cy.get('.RHiWt').should('not.be.visible')
+
 })
