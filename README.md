@@ -1,3 +1,17 @@
+# Mina tankar
+Min tanke är följade att strukturera upp testfallen i meepo-form.cy.ts. I en verklig applikation så tänker jag en annan typ av namnsättning som kan efterlikna en benämning på en testsvit samt namnsätta en testsvit som testar edge-cases. Självklart beroeden på komplexiteten och funktionaliteten av applikationen så får man bryta ner "namnsättningen" / testsviterna så att det bryts ned beroende på vilken del av applikationen som testas. 
+
+För att klargöra vad för test som exekeveras i meepo-form så avskiljer vi alla "klick" och kommandon i commands.ts filen, där interaktionen med webbläsren sätts. Varje testfall genomför sina steg i ordning till man kommer fram till den "assertion" som man vill testa. 
+
+Utifrån detta forumlär så skulle jag sätta en testsvit men namnsättning likt den som är satt "meepo-form" där alla "happy-flow" testfallen genomförs. Därefter sätta en testsvit med edge-cases. Jag skulle även skapa upp en fil relevant testdata för att anväda sig utav dynamisk data i testfallen. 
+
+Jag hade även föresalgit att sätta spcifika ID eller en data-tag i HTML som är implementerade för att enkelt och på ett hållbart sätt skriva automatiserade tester; för att inte få tester som slutar att fungera på grund av ändringar i HTML-struktuen. 
+
+
+
+
+
+
 # Intro
 
 Minso är vårt system för att visa försäkringsdata för inloggade användare. Systemet består idag av två delar:
