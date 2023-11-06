@@ -36,6 +36,6 @@ Cypress.Commands.add('informationMissing', () => {
     cy.get('input.whsOnd.zHQkBf').first().type('Johan')
     cy.get('span.NPEfkd.RveJvd.snByac').eq(1).click() //click next without filling the mandatory fields
     // assert if any field is missing value
-    cy.get('.RHiWt').should('not.be.visible')
+    cy.get('.RHiWt').should('be.visible')
 
 })
